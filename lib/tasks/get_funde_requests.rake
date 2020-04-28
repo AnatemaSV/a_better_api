@@ -30,8 +30,9 @@ task get_funde_requests: :environment do
       if inforequest.save
         puts "Importando request: #{inforequest._id}"
 
+        documents = []
         i['documents'].each do |d|
-          document = inforequest.documents.new
+          document = Document.new
           document._id = d['_id']
           document.date = d['date']
           document.downloaded = d['downloaded'].to_i
@@ -40,12 +41,27 @@ task get_funde_requests: :environment do
           document.tags = d['tags'].split(' ').join(', ')
           document.title = d['title']
 
-          if document.save
-            puts "  agregando documento: #{document._id}"
+          document_ = Document.find_by__id(d['_id'])
+          if document_.nil?
+            if document.save
+              puts "  + agregando documento: #{document._id}"
+              documents.push(document.id)
+            else
+              puts "  ERROR / agregando documento: #{document._id}"
+              document.errors.full_messages.each do |e|
+                puts "    * #{e}"
+              end
+            end
           else
-            puts "  ERROR / agregando documento: #{document._id}"
-            puts "  #{document.errors.inspect}"
+            documents.push(document_.id)
           end
+        end
+
+        inforequest.document_ids = documents
+
+        puts "******"
+        inforequest.documents.each do |doc|
+          puts "    * check: #{doc._id}"
         end
 
         i['updates'].each do |u|
@@ -61,7 +77,10 @@ task get_funde_requests: :environment do
         end
 
       else
-        # puts podcast.errors.inspect
+        puts "ERROR / Importando request: #{inforequest._id}"
+        inforequest.errors.full_messages.each do |e|
+          puts "  #{e}"
+        end
       end
     end
   end

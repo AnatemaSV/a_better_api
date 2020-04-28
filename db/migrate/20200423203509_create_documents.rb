@@ -3,7 +3,6 @@
 class CreateDocuments < ActiveRecord::Migration[6.0]
   def change
     create_table :documents do |t|
-      t.integer :inforequest_id
       t.string :_id
       t.date :date
       t.integer :downloaded
