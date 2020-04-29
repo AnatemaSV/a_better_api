@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_154957) do
+ActiveRecord::Schema.define(version: 2020_04_28_224835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_154957) do
   create_table "inforequests", force: :cascade do |t|
     t.string "_id"
     t.string "case_id"
+    t.integer "institution_id"
     t.text "comment"
     t.date "date"
     t.text "detail"
@@ -64,10 +65,31 @@ ActiveRecord::Schema.define(version: 2020_04_24_154957) do
     t.string "office_id"
     t.text "overview"
     t.integer "ref"
-    t.string "result"
+    t.string "_result"
     t.date "start"
-    t.string "status"
+    t.string "_status"
+    t.integer "status_id"
+    t.integer "result_id"
     t.text "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string "name"
+    t.string "office_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

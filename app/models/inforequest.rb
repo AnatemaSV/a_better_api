@@ -1,6 +1,9 @@
 class Inforequest < ApplicationRecord
   has_and_belongs_to_many :documents
   has_many :updates
+  belongs_to :institution
+  belongs_to :result
+  belongs_to :status
 
   validates :_id, uniqueness: true
 

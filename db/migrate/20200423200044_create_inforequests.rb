@@ -5,6 +5,7 @@ class CreateInforequests < ActiveRecord::Migration[6.0]
     create_table :inforequests do |t|
       t.string :_id
       t.string :case_id
+      t.integer :institution_id
       t.text :comment
       t.date :date
       t.text :detail
@@ -13,9 +14,11 @@ class CreateInforequests < ActiveRecord::Migration[6.0]
       t.string :office_id
       t.text :overview
       t.integer :ref
-      t.string :result
+      t.string :_result
       t.date :start
-      t.string :status
+      t.string :_status
+      t.integer :status_id
+      t.integer :result_id
       t.text :url
       t.timestamps
     end

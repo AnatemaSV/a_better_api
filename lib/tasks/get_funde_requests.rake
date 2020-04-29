@@ -18,17 +18,17 @@ task get_funde_requests: :environment do
       inforequest.date = i['date']
       inforequest.detail = i['detail']
       inforequest.finish = i['finish']
-      inforequest.office = i['office']
+      inforequest.office = i['office'].strip
       inforequest.office_id = i['office_id']
       inforequest.overview = i['overview']
       inforequest.ref = i['ref'].to_i
-      inforequest.result = i['result']
+      inforequest._result = i['result'].strip
       inforequest.start = i['start']
-      inforequest.status = i['status']
+      inforequest._status = i['status'].strip
       inforequest.url = i['url']
 
       if inforequest.save
-        puts "Importando request: #{inforequest._id}"
+        puts "adding inforequest: #{inforequest._id}"
 
         documents = []
         i['documents'].each do |d|
@@ -44,10 +44,10 @@ task get_funde_requests: :environment do
           document_ = Document.find_by__id(d['_id'])
           if document_.nil?
             if document.save
-              puts "  + agregando documento: #{document._id}"
+              puts "  + adding document: #{document._id}"
               documents.push(document.id)
             else
-              puts "  ERROR / agregando documento: #{document._id}"
+              puts "  ERROR / adding document: #{document._id}"
               document.errors.full_messages.each do |e|
                 puts "    * #{e}"
               end
@@ -58,8 +58,6 @@ task get_funde_requests: :environment do
         end
 
         inforequest.document_ids = documents
-
-        puts "******"
         inforequest.documents.each do |doc|
           puts "    * check: #{doc._id}"
         end
@@ -70,14 +68,14 @@ task get_funde_requests: :environment do
           update.details = u['detail']
 
           if update.save
-            puts "  - agregando update: #{update.date}"
+            puts "  - adding update: #{update.date}"
           else
-            puts "  * ERROR / agregando update: #{update.date}"
+            puts "  * ERROR / adding update: #{update.date}"
           end
         end
 
       else
-        puts "ERROR / Importando request: #{inforequest._id}"
+        puts "ERROR / inforequest: #{inforequest._id}"
         inforequest.errors.full_messages.each do |e|
           puts "  #{e}"
         end
