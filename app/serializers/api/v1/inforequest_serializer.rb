@@ -20,10 +20,6 @@ module Api
       attribute :alac_funde_case_id
       attribute :alac_funde_institution_id
 
-
-      def self_link
-        "/api/v1#{super}"
-      end
     end
   end
 end
