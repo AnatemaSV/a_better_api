@@ -19,3 +19,8 @@ Parametros:
 Busqueda en las solicitudes
 
 Parametros:
+  - per_page: Por defecto 5
+  - page: Numero de pagina
+  - query: Terminos de busqueda
+  - date-begin: Fecha a partir de la cual iniciar la busqueda.
+  - date-end: Fecha hasta la cual finalizar la busqueda.
