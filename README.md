@@ -27,6 +27,7 @@ Parametros:
       - 0 = Cerrada
       - 1 = En tramite
   - result:
+<<<<<<< HEAD
       - 0 = Confidencial
       - 1 = Diferente información
       - 2 = Inexistente
@@ -37,6 +38,18 @@ Parametros:
       - 7 = Respuesta parcial
       - 8 = Sin respuesta
       - 9 = Solicitud improcedente
+=======
+    - 0 = Confidencial
+    - 1 = Diferente información
+    - 2 = Inexistente
+    - 3 = No definido
+    - 4 = Oficina no competente
+    - 5 = Reservada
+    - 6 = Respuesta completa
+    - 7 = Respuesta parcial
+    - 8 = Sin respuesta
+    - 9 = Solicitud improcedente
+>>>>>>> ece5c10b472e0de9c31e29a5379d68eaf868b038
   - institution:
     - 1 = Academia Nacional de Seguridad Pública
     - 2 = Administración Nacional de Acueductos y Alcantarillados
