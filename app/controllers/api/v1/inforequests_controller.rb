@@ -41,7 +41,7 @@ module Api
 
         @inforequests = Inforequest.all
         if params[:query].present? && !params[:query].blank?
-          @inforequests = @inforequest.search_by_term(params[:query])
+          @inforequests = @inforequests.search_by_term(params[:query])
         end
 
         if params[:'date-begin'].present? && !params[:'date-begin'].blank?
