@@ -20,6 +20,10 @@ class Inforequest < ApplicationRecord
 
   scope :dbegin, ->(date) { where('date >= ?', date.to_date) }
   scope :dend,  ->(date) { where('finish >= ?', date.to_date) }
+  scope :stext, ->(status) { where('status_id = ?', status.to_i) }
+  scope :rtext, ->(result) { where('result_id = ?', result.to_i) }
+
+  RESULTS = Result.pluck(:name).sort
 
   def alac_funde_id
     _id
