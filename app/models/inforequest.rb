@@ -22,6 +22,7 @@ class Inforequest < ApplicationRecord
   scope :dend,  ->(date) { where('finish >= ?', date.to_date) }
   scope :stext, ->(status) { where('status_id = ?', status.to_i) }
   scope :rtext, ->(result) { where('result_id = ?', result.to_i) }
+  scope :by_institution, ->(institution) { where('institution_id = ?', institution.to_i) }
 
   RESULTS = Result.pluck(:name).sort
 

@@ -14,7 +14,12 @@ module Api
           namespace: Api::V1,
           include_links: false,
           base_url: 'https://a-better-api.herokuapp.com/api/v1',
-          meta: { project_authors: 'anatema.org' }
+          meta: {
+            project_authors: 'anatema.org',
+            page: p,
+            per_page: pp,
+            total_pages: @inforequests.total_pages
+          }
         )
       end
 
@@ -24,7 +29,9 @@ module Api
           @inforequest,
           namespace: Api::V1,
           base_url: 'https://a-better-api.herokuapp.com/api/v1',
-          meta: { project_authors: 'anatema.org' }
+          meta: {
+            project_authors: 'anatema.org'
+          }
         )
       end
 
@@ -36,22 +43,29 @@ module Api
         if params[:query].present? && params[:query].blank?
           @inforequests = @inforequest.search_by_term(params[:query])
         end
-        if params[:'date-begin'].present?
+
+        if params[:'date-begin'].present? && params[:'date-begin'].blank?
           @inforequests = @inforequests.dbegin(params[:'date-begin'])
         end
-        if params[:'date-end'].present?
+
+        if params[:'date-end'].present? && params[:'date-end'].blank?
           @inforequests = @inforequests.dend(params[:'date-end'])
         end
 
-        if params[:result].present?
+        if params[:result].present? && params[:result].blank?
           index = params[:result].to_i
           result = Result.find_by_name(Inforequest::RESULTS[index]) ? Result.find_by_name(Inforequest::RESULTS[index]) : Result.first
           @inforequests = @inforequests.rtext(result.id)
         end
 
-        if params[:status].present?
+        if params[:status].present? && params[:status].blank?
           status = params[:status].to_i.positive? ? Status.find_by(name: 'En trámite').id : Status.find_by(name: 'Cerrada').id
           @inforequests = @inforequests.stext(status)
+        end
+
+        if params[:institution].present? && params[:institution].blank?
+          institution = Institution.exists?(id: params[:institution].to_i) ? Institution.find(params[:institution].to_i).id : Institution.first.id
+          @inforequests = @inforequests.by_institution(institution)
         end
 
         @inforequests = @inforequests.paginate(page: p, per_page: pp)
@@ -65,7 +79,8 @@ module Api
           meta: {
             project_authors: 'anatema.org',
             page: p,
-            per_page: pp
+            per_page: pp,
+            total_pages: @inforequests.total_pages
           }
         )
       end

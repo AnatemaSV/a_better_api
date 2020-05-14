@@ -4,7 +4,7 @@ desc 'Fix models to serve API'
 
 task fix_models: :environment do
   puts 'Populate model Institutions'
-  Inforequest.select('DISTINCT office_id').select(:office).each do |i|
+  Inforequest.select('DISTINCT office_id').select(:office).order("office ASC").each do |i|
     institution = Institution.new
     institution.name = i.office.strip
     institution.office_id = i.office_id

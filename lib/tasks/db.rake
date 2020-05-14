@@ -12,7 +12,7 @@ namespace :db do
     ActiveRecord::Base.connection.tables.each do |table|
       next if skipped.include?(table)
 
-      query = "TRUNCATE #{table} CASCADE"
+      query = "TRUNCATE #{table} RESTART IDENTITY CASCADE"
       puts query
       ActiveRecord::Base.connection.execute(query)
     end
