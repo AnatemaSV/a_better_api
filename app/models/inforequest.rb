@@ -18,6 +18,9 @@ class Inforequest < ApplicationRecord
                                      }
                                    }
 
+  scope :dbegin, ->(date) { where('date >= ?', date.to_date) }
+  scope :dend,  ->(date) { where('finish >= ?', date.to_date) }
+
   def alac_funde_id
     _id
   end
@@ -45,6 +48,7 @@ class Inforequest < ApplicationRecord
   def status_text
     _status
   end
+
   def result_text
     _result
   end
