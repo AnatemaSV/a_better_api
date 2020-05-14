@@ -1,4 +1,3 @@
-
 /api/v1/inforequests
 
 Todas las solicitudes de informacion de FUNDE ALAC.
@@ -28,7 +27,6 @@ Parametros:
       - 0 = Cerrada
       - 1 = En tramite
   - result:
-<<<<<<< HEAD
       0 = Confidencial
       1 = Diferente información
       2 = Inexistente
@@ -176,15 +174,3 @@ Parametros:
     - 134 = Unidad de Transparencia, México
     - 135 = Universidad de El Salvador
     - 136 = Viceministerio de Transporte
-=======
-      - 0 = Confidencial
-      - 1 = Diferente información
-      - 2 = Inexistente
-      - 3 = No definido
-      - 4 = Oficina no competente
-      - 5 = Reservada
-      - 6 = Respuesta completa
-      - 7 = Respuesta parcial
-      - 8 = Sin respuesta
-      - 9 = Solicitud improcedente
->>>>>>> 4c14fad824ca9d41d57bb4b4393a19827148a345
