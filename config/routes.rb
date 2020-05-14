@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # mount Rswag::Api::Engine => '/api-docs'
   namespace :api do
     namespace :v1 do
-      resources :inforequests, only: %i[index show]
+      resources :inforequests, only: %i[index show] do
+        collection do
+          get :search
+        end
+      end
     end
   end
 end

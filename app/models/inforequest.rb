@@ -10,8 +10,7 @@ class Inforequest < ApplicationRecord
   validates :_id, uniqueness: true
 
   include PgSearch::Model
-  pg_search_scope :search_by_term, against: %i[artist_name name kind
-                                               copyright artist_url url],
+  pg_search_scope :search_by_term, against: %i[comment detail overview],
                                    using: {
                                      tsearch: {
                                        any_word: true,

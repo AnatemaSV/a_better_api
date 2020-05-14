@@ -14,7 +14,7 @@ module Api
           namespace: Api::V1,
           include_links: false,
           base_url: 'https://a-better-api.herokuapp.com/api/v1',
-          meta: {project_authors: 'anatema.org'}
+          meta: { project_authors: 'anatema.org' }
         )
       end
 
@@ -23,7 +23,23 @@ module Api
         render json: JSONAPI::Serializer.serialize(
           @inforequest,
           namespace: Api::V1,
-          base_url: 'https://a-better-api.herokuapp.com/api/v1'
+          base_url: 'https://a-better-api.herokuapp.com/api/v1',
+          meta: { project_authors: 'anatema.org' }
+        )
+      end
+
+      def search
+        p = params[:page].to_i <= 0 ? 1 : params[:page].to_i
+        pp = params[:per_page] || 5
+        @inforequests = Inforequest.search_by_term(params[:query]).paginate(page: p, per_page: pp)
+
+        render json: JSONAPI::Serializer.serialize(
+          @inforequests,
+          is_collection: true,
+          namespace: Api::V1,
+          include_links: false,
+          base_url: 'https://a-better-api.herokuapp.com/api/v1',
+          meta: { project_authors: 'anatema.org' }
         )
       end
     end
