@@ -57,4 +57,12 @@ class Inforequest < ApplicationRecord
   def result_text
     _result
   end
+
+  def total_documents
+    documents.count
+  end
+
+  def related_documents
+    documents.select("date, title, overview, tags, path, id, _id AS alac_funde_case_id")
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_224835) do
+ActiveRecord::Schema.define(version: 2020_05_17_041842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,9 +48,38 @@ ActiveRecord::Schema.define(version: 2020_04_28_224835) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "documents_infocomplains", id: false, force: :cascade do |t|
+    t.bigint "document_id", null: false
+    t.bigint "infocomplain_id", null: false
+  end
+
   create_table "documents_inforequests", id: false, force: :cascade do |t|
     t.bigint "document_id", null: false
     t.bigint "inforequest_id", null: false
+  end
+
+  create_table "infocomplains", force: :cascade do |t|
+    t.string "_id"
+    t.string "case_id"
+    t.integer "institution_id"
+    t.text "comment"
+    t.date "date"
+    t.text "detail"
+    t.date "finish"
+    t.string "office"
+    t.string "office_id"
+    t.text "overview"
+    t.integer "ref"
+    t.string "_result"
+    t.string "reviewer"
+    t.integer "reviewer_id"
+    t.date "start"
+    t.string "_status"
+    t.integer "status_id"
+    t.integer "result_id"
+    t.text "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "inforequests", force: :cascade do |t|
@@ -96,6 +125,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_224835) do
 
   create_table "updates", force: :cascade do |t|
     t.integer "inforequest_id"
+    t.integer "infocomplain_id"
     t.date "date"
     t.text "details"
     t.datetime "created_at", precision: 6, null: false

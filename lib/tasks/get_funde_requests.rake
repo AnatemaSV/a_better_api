@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 desc 'get info from FUNDE'
-
 task get_funde_requests: :environment do
   response = RestClient.get 'https://alac.funde.org/api/v1/requests?startdate=2000-01-01&enddate=2020-12-31&page=0&limit=1000'
   json = JSON.parse response

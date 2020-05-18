@@ -29,6 +29,7 @@ module Api
           @inforequest,
           namespace: Api::V1,
           base_url: 'https://a-better-api.herokuapp.com/api/v1',
+          serializer: Inforequest2Serializer,
           meta: {
             project_authors: 'anatema.org'
           }

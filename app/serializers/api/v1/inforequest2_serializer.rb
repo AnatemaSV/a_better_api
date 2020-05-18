@@ -4,7 +4,7 @@ require 'jsonapi-serializers'
 
 module Api
   module V1
-    class InforequestSerializer
+    class Inforequest2Serializer
       include JSONAPI::Serializer
 
       attribute :comment
@@ -14,12 +14,14 @@ module Api
       attribute :date_finish
       attribute :status_text
       attribute :result_text
-      attribute :total_documents
 
       attribute :alac_funde_ref
       attribute :alac_funde_id
       attribute :alac_funde_case_id
       attribute :alac_funde_institution_id
+
+      attribute :related_documents
+
 
     end
   end
