@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-desc 'Fix models to serve API'
+desc 'Fix inforequests models to serve API'
 
-task fix_models: :environment do
+task fix_inforequest_models: :environment do
   puts 'Populate model Institutions'
   Inforequest.select('DISTINCT office_id').select(:office).order("office ASC").each do |i|
     institution = Institution.new

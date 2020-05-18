@@ -20,7 +20,7 @@ class CreateInfocomplains < ActiveRecord::Migration[6.0]
       t.date :start
       t.string :_status
       t.integer :status_id
-      t.integer :result_id
+      t.integer :icresult_id
       t.text :url
       t.timestamps
     end

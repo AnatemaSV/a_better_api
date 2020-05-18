@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_041842) do
+ActiveRecord::Schema.define(version: 2020_05_18_075128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2020_05_17_041842) do
     t.bigint "inforequest_id", null: false
   end
 
+  create_table "icresults", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "infocomplains", force: :cascade do |t|
     t.string "_id"
     t.string "case_id"
@@ -76,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_041842) do
     t.date "start"
     t.string "_status"
     t.integer "status_id"
-    t.integer "result_id"
+    t.integer "icresult_id"
     t.text "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

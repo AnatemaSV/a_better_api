@@ -2,14 +2,14 @@
 
 module Api
   module V1
-    class InforequestsController < ApplicationController
+    class InfocomplainsController < ApplicationController
       def index
         p = params[:page].to_i <= 0 ? 1 : params[:page].to_i
         pp = params[:per_page] || 5
-        @inforequests = Inforequest.all.paginate(page: p, per_page: pp)
+        @infocomplains = Infocomplain.all.paginate(page: p, per_page: pp)
 
         render json: JSONAPI::Serializer.serialize(
-          @inforequests,
+          @infocomplains,
           is_collection: true,
           namespace: Api::V1,
           include_links: false,
@@ -18,18 +18,18 @@ module Api
             project_authors: 'anatema.org',
             page: p,
             per_page: pp,
-            total_pages: @inforequests.total_pages
+            total_pages: @infocomplains.total_pages
           }
         )
       end
 
       def show
-        @inforequest = Inforequest.find params[:id]
+        @infocomplain = Infocomplain.find params[:id]
         render json: JSONAPI::Serializer.serialize(
-          @inforequest,
+          @infocomplain,
           namespace: Api::V1,
           base_url: 'https://a-better-api.herokuapp.com/api/v1',
-          serializer: Inforequest2Serializer,
+          serializer: Infocomplain2Serializer,
           meta: {
             project_authors: 'anatema.org'
           }
@@ -40,17 +40,17 @@ module Api
         p = params[:page].to_i <= 0 ? 1 : params[:page].to_i
         pp = params[:per_page] || 5
 
-        @inforequests = Inforequest.all
+        @infocomplains = Infocomplain.all
         if params[:query].present? && !params[:query].blank?
-          @inforequests = @inforequests.search_by_term(params[:query])
+          @infocomplains = @infocomplains.search_by_term(params[:query])
         end
 
         if params[:'date-begin'].present? && !params[:'date-begin'].blank?
-          @inforequests = @inforequests.dbegin(params[:'date-begin'])
+          @infocomplains = @infocomplains.dbegin(params[:'date-begin'])
         end
 
         if params[:'date-end'].present? && !params[:'date-end'].blank?
-          @inforequests = @inforequests.dend(params[:'date-end'])
+          @infocomplains = @infocomplains.dend(params[:'date-end'])
         end
 
         if params[:result].present? && !params[:result].blank?
@@ -60,18 +60,18 @@ module Api
 
         if params[:status].present? && !params[:status].blank?
           status = params[:status].to_i.positive? ? Status.find_by(name: 'En trámite').id : Status.find_by(name: 'Cerrada').id
-          @inforequests = @inforequests.stext(status)
+          @infocomplains = @infocomplains.stext(status)
         end
 
         if params[:institution].present? && !params[:institution].blank?
           institution = Institution.exists?(id: params[:institution].to_i) ? Institution.find(params[:institution].to_i).id : Institution.first.id
-          @inforequests = @inforequests.by_institution(institution)
+          @infocomplains = @infocomplains.by_institution(institution)
         end
 
-        @inforequests = @inforequests.paginate(page: p, per_page: pp)
+        @infocomplains = @infocomplains.paginate(page: p, per_page: pp)
 
         render json: JSONAPI::Serializer.serialize(
-          @inforequests,
+          @infocomplains,
           is_collection: true,
           namespace: Api::V1,
           include_links: false,
@@ -80,7 +80,7 @@ module Api
             project_authors: 'anatema.org',
             page: p,
             per_page: pp,
-            total_pages: @inforequests.total_pages
+            total_pages: @infocomplains.total_pages
           }
         )
       end
