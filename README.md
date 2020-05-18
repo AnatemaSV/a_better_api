@@ -174,3 +174,11 @@ Parametros:
     - 134 = Unidad de Transparencia, México
     - 135 = Universidad de El Salvador
     - 136 = Viceministerio de Transporte
+
+/api/v1/institutions
+
+Todas las instituciones que tienen solicitudse en FUNDE ALAC.
+
+Parametros:
+  - per_page: Por defecto 5
+  - page: Numero de pagina
