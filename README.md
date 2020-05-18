@@ -22,18 +22,9 @@ https://a-better-api.herokuapp.com/api/v1/inforequests/search
           - 0 = Cerrada
           - 1 = En tramite
       - result:
-        - 0 = Confidencial
-        - 1 = Diferente información
-        - 2 = Inexistente
-        - 3 = No definido
-        - 4 = Oficina no competente
-        - 5 = Reservada
-        - 6 = Respuesta completa
-        - 7 = Respuesta parcial
-        - 8 = Sin respuesta
-        - 9 = Solicitud improcedente
+        -El catalogo de results se encuentra en: https://a-better-api.herokuapp.com/catalogs/inforequest_results
     - institution:
-      - El catalogo de instituciones se encuentra en: /api/v1/catalogs/institutions
+      - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
     
 https://a-better-api.herokuapp.com/api/v1/institutions
   - Todas las instituciones que tienen solicitudse en FUNDE ALAC.
