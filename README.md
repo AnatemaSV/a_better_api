@@ -25,18 +25,18 @@ https://a-better-api.herokuapp.com/api/v1/inforequests/search
     - institution:
       - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
 
-https://a-better-api.herokuapp.com/api/v1/infoinfocomplains
+https://a-better-api.herokuapp.com/api/v1/infocomplains
   - Todas las solicitudes de informacion de FUNDE ALAC.
     - Parametros:
       - per_page: Por defecto 5
       - page: Numero de pagina
 
-https://a-better-api.herokuapp.com/api/v1/infoinfocomplains/
+https://a-better-api.herokuapp.com/api/v1/infocomplains/
 - Muestra solicitud que corresponde a id
   - Parametros:
     - ninguno
 
-https://a-better-api.herokuapp.com/api/v1/infoinfocomplains/search
+https://a-better-api.herokuapp.com/api/v1/infocomplains/search
   - Busqueda en las solicitudes
     - Parametros:
       - per_page: Por defecto 5
