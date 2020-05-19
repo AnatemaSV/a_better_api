@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         collection do
           get :institutions
           get :inforequest_results
+          get :totals
         end
       end
     end
