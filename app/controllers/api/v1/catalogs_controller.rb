@@ -36,13 +36,17 @@ module Api
 
         # @query = Inforequest.where('institution_id = ?', institution).group_by { |m| m.date.beginning_of_month }
 
-        @query = Inforequest.group_by_month(:date, format: "%Y-%m", range:Date.new(2012)..Time.now).count
-
+        @query = Inforequest
+                  .where('institution_id = ?', institution)
+                  .group_by_month(
+                    :date,
+                    format: '%Y-%m',
+                    range: Date.new(2012)..Time.now).count
 
         @history = []
         @query.each do |k, v|
-          date = k.split("-")
-          @history << [year: date[0], month: date[1], inforequests: v]
+          date = k.split('-')
+          @history << [year: date[0], month: date[1], inforequests: v.to_s]
         end
 
         render json: @history.flatten
@@ -52,12 +56,16 @@ module Api
         institution = params[:institution]
 
         @query = Infocomplain
-                   .where('institution_id = ?', institution)
-                   .group_by { |t| t.date.beginning_of_month }
+                  .where('institution_id = ?', institution)
+                  .group_by_month(
+                    :date,
+                    format: '%Y-%m',
+                    range: Date.new(2012)..Time.now).count
 
         @history = []
         @query.each do |k, v|
-          @history << [year_month: k, inforequests: v.count]
+          date = k.split('-')
+          @history << [year: date[0], month: date[1], inforequests: v.to_s]
         end
 
         render json: @history.flatten
