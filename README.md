@@ -5,19 +5,19 @@ https://a-better-api.herokuapp.com
 Utilizamos tareas rake para popular la base de datos:
 
 Elimina todos los registros
-rake db:truncate
+- rake db:truncate
 
 Copia todos los registros de https://alac.funde.org/api/v1/requests
-rake get_funde_requests
+- rake get_funde_requests
 
 Genera estructura de base de datos necesaria, a partir de la informacion descargada, para el modelo inforequests
-rake fix_inforequest_models 
+- rake fix_inforequest_models 
 
 Copia todos los registros de https://alac.funde.org/api/v1/complains
-rake get_funde_complains
+- rake get_funde_complains
 
 Genera estructura de base de datos necesaria, a partir de la informacion descargada, para el modelo infocomplains
-rake fix_infocomplain_models 
+- rake fix_infocomplain_models 
 
 https://a-better-api.herokuapp.com/api/v1/inforequests
   - Todas las solicitudes de informacion de FUNDE ALAC.
@@ -28,7 +28,7 @@ https://a-better-api.herokuapp.com/api/v1/inforequests
 https://a-better-api.herokuapp.com/api/v1/inforequests/1
 - Muestra solicitud que corresponde a id
   - Parametros:
-    - ninguno
+    - Ninguno
 
 https://a-better-api.herokuapp.com/api/v1/inforequests/search
   - Busqueda en las solicitudes
@@ -55,7 +55,7 @@ https://a-better-api.herokuapp.com/api/v1/infocomplains
 https://a-better-api.herokuapp.com/api/v1/infocomplains/1
 - Muestra solicitud que corresponde a id
   - Parametros:
-    - ninguno
+    - Ninguno
 
 https://a-better-api.herokuapp.com/api/v1/infocomplains/search
   - Busqueda en las solicitudes
@@ -74,7 +74,22 @@ https://a-better-api.herokuapp.com/api/v1/infocomplains/search
       - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
 
 https://a-better-api.herokuapp.com/api/v1/institutions
-  - Todas las instituciones que tienen solicitudse en FUNDE ALAC.
+  - Todas las instituciones que tienen solicitudes en FUNDE ALAC.
     - Parametros:
       - per_page: Por defecto 5
       - page: Numero de pagina
+
+https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
+  - Catalogo de instituciones
+    - Parametros
+      - Ninguno
+
+https://a-better-api.herokuapp.com/api/v1/catalogs/totals
+  - Catalogo de totales
+    - Parametros
+      - Ninguno
+
+https://a-better-api.herokuapp.com/api/v1/catalogs/inforequests_history
+    - Parametros
+      - institution 
+        - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
