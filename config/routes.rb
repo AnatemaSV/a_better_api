@@ -25,6 +25,7 @@ Rails.application.routes.draw do
           get :institutions
           get :inforequest_results
           get :totals
+          get :inforequests_history
         end
       end
     end

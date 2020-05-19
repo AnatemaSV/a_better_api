@@ -17,7 +17,7 @@ module Api
       end
 
       def totals
-        @totals = Hash.new
+        @totals = {}
         @totals['total_inforequests'] = Inforequest.count
         @totals['total_irstatus'] = Inforequest.group(:_status).count
         @totals['total_irresults'] = Inforequest.group(:_result).count
@@ -27,6 +27,18 @@ module Api
         @totals['total_icresults'] = Infocomplain.group(:_result).count
 
         render json: @totals
+      end
+
+      def inforequests_history
+        institution = params[:institution]
+
+        @history = Inforequest
+                   .where('institution_id = ?', institution)
+                   .group('(EXTRACT(YEAR FROM date))::integer')
+                   .group('(EXTRACT(MONTH FROM date))::integer')
+                   .order('2 DESC, 3 DESC').count
+
+        render json: @history
       end
     end
   end

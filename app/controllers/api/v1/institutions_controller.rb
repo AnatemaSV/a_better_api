@@ -23,7 +23,20 @@ module Api
         )
       end
 
-      def show; end
+      def show
+        @institutions = Institution.all
+
+        render json: JSONAPI::Serializer.serialize(
+          @institutions,
+          is_collection: true,
+          namespace: Api::V1,
+          include_links: false,
+          base_url: 'https://a-better-api.herokuapp.com/api/v1',
+          meta: {
+            project_authors: 'anatema.org',
+          }
+        )
+      end
     end
   end
 end
