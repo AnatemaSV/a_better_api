@@ -65,7 +65,7 @@ module Api
         @history = []
         @query.each do |k, v|
           date = k.split('-')
-          @history << [year: date[0], month: date[1], inforequests: v.to_s]
+          @history << [year: date[0], month: date[1], infocomplains: v.to_s]
         end
 
         render json: @history.flatten
