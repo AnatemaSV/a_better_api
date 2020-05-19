@@ -32,13 +32,35 @@ module Api
       def inforequests_history
         institution = params[:institution]
 
-        @history = Inforequest
-                   .where('institution_id = ?', institution)
-                   .group('(EXTRACT(YEAR FROM date))::integer')
-                   .group('(EXTRACT(MONTH FROM date))::integer')
-                   .order('2 DESC, 3 DESC').count
+        # @query = Inforequest.where('institution_id = ?', institution).group('(EXTRACT(YEAR FROM date))::integer').group('(EXTRACT(MONTH FROM date))::integer').order('2 DESC, 3 DESC').count
 
-        render json: @history
+        # @query = Inforequest.where('institution_id = ?', institution).group_by { |m| m.date.beginning_of_month }
+
+        @query = Inforequest
+                 .where('institution_id = ?', institution)
+                 .group_by { |t| t.date.beginning_of_month }
+
+        @history = []
+        @query.each do |k, v|
+          @history << [year_month: k, inforequests: v.count]
+        end
+
+        render json: @history.flatten
+      end
+
+      def infocomplains_history
+        institution = params[:institution]
+
+        @query = Infocomplain
+                   .where('institution_id = ?', institution)
+                   .group_by { |t| t.date.beginning_of_month }
+
+        @history = []
+        @query.each do |k, v|
+          @history << [year_month: k, inforequests: v.count]
+        end
+
+        render json: @history.flatten
       end
     end
   end
