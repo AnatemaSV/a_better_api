@@ -50,3 +50,4 @@ gem 'rest-client' #To consume api|
 gem 'will_paginate' # Pagination
 gem 'rack-cors' #para que funcione el angular caca de @ojnc3x
 #gem 'rswag'
+gem 'groupdate' #to work with dates
