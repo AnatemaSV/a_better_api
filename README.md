@@ -90,6 +90,6 @@ https://a-better-api.herokuapp.com/api/v1/catalogs/totals
       - Ninguno
 
 https://a-better-api.herokuapp.com/api/v1/catalogs/inforequests_history
-    - Parametros
-      - institution 
-        - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
+  - Parametros
+    - institution 
+      - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
