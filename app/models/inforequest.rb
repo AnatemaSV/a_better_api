@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'csv'
 class Inforequest < ApplicationRecord
   has_and_belongs_to_many :documents
   has_many :updates
@@ -63,6 +64,20 @@ class Inforequest < ApplicationRecord
   end
 
   def related_documents
-    documents.select("date, title, overview, tags, path, id, _id AS alac_funde_case_id")
+    documents.select('date, title, overview, tags, path, id, _id AS alac_funde_case_id')
+  end
+
+  def self.to_csv
+    attributes = %w[_id case_id institution_id comment date detail finish office
+                    office_id overview ref _result start _status status_id
+                    result_id url]
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map { |attr| user.send(attr) }
+      end
+    end
   end
 end

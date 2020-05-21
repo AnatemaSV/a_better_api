@@ -3,6 +3,8 @@
 module Api
   module V1
     class InforequestsController < ApplicationController
+      include ActionController::MimeResponds
+
       def index
         p = params[:page].to_i <= 0 ? 1 : params[:page].to_i
         pp = params[:per_page] || 5
@@ -83,6 +85,17 @@ module Api
             total_pages: @inforequests.total_pages
           }
         )
+      end
+
+      def csv
+        @inforequests = Inforequest.all
+
+        respond_to do |format|
+          format.csv do
+            send_data @inforequests.to_csv,
+                      filename: "inforequests-#{Date.today}.csv"
+          end
+        end
       end
     end
   end

@@ -8,11 +8,13 @@ Rails.application.routes.draw do
       resources :infocomplains, only: %i[index show] do
         collection do
           get :search
+          get :csv, defaults: { format: :csv }
         end
       end
       resources :inforequests, only: %i[index show] do
         collection do
           get :search
+          get :csv, defaults: { format: :csv }
         end
       end
       resources :institutions, only: %i[index show] do

@@ -3,6 +3,8 @@
 module Api
   module V1
     class InfocomplainsController < ApplicationController
+      include ActionController::MimeResponds
+
       def index
         p = params[:page].to_i <= 0 ? 1 : params[:page].to_i
         pp = params[:per_page] || 5
@@ -83,6 +85,17 @@ module Api
             total_pages: @infocomplains.total_pages
           }
         )
+      end
+
+      def csv
+        @infocomplains = Infocomplain.all
+
+        respond_to do |format|
+          format.csv do
+            send_data @infocomplains.to_csv,
+                      filename: "infocomplains-#{Date.today}.csv"
+          end
+        end
       end
     end
   end
