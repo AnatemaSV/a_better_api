@@ -90,6 +90,23 @@ https://a-better-api.herokuapp.com/api/v1/catalogs/totals
       - Ninguno
 
 https://a-better-api.herokuapp.com/api/v1/catalogs/inforequests_history
-  - Parametros
-    - institution 
-      - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
+  - Historial de solicitudes por mes
+    - Parametros
+      - institution 
+        - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
+
+https://a-better-api.herokuapp.com/api/v1/catalogs/infocomplains_history
+  - Historial de denuncias por mes
+    - Parametros
+      - institution 
+        - El catalogo de instituciones se encuentra en: https://a-better-api.herokuapp.com/api/v1/catalogs/institutions
+
+http://a-better-api.herokuapp.com/api/v1/inforequests/csv
+  - Descarga del dataset de las solicitudes
+    - Parametros
+      - Ninguno
+  
+http://a-better-api.herokuapp.com/api/v1/infocomplains/csv
+  - Descarga del dataset de las denuncias
+    - Parametros
+      - Ninguno
